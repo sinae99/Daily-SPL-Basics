@@ -54,3 +54,22 @@ service IN (HTTP, HTTPS)
 index="your index name" sourcetype=traffic service IN (HTTP, HTTPS) 
 | stats sum(bytes_in) as rcv, sum(bytes_out) as sent by src_ip
 ```
+
+
+### Scanning
+#### Port Scan
+```
+index=* (tag=network AND tag=communicate) earliest=-1h
+| stats dc(dest_port) as num_dest_port, dc(dest_ip) as num_dest_ip by src_ip
+| where num_dest_port > 50 OR num_dest_ip > 50
+```
+#### Ping Scan
+```
+index="your_index" sourcetype="your_sourcetype" icmp_type=8 
+| timechart span=1m count by src_ip 
+| where count > 10
+```
+we also have other scans like SYN, ARP, SV and ... scans.
+
+any Scanning acivity must be monitored.
+
