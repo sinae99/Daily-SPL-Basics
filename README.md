@@ -1,7 +1,7 @@
 # Daily-SPL
-Some Splunk queries that might be useful for SOC daily routine (soc L1 Diaries!)
+Some Splunk queries that might be useful for SOC daily routine (SOC L1 Diaries!)
 
-All of these queries are just usecases that ive wrote to give you ideas and concepts keys that could help you in your SOC
+All of these queries are just usecases that ive wrote to give you ideas and key concepts that could help you in your SOC environment
 
 Each query can be better and more advanced , it only depends on you and your skills.
 
