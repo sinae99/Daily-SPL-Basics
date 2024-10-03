@@ -3,7 +3,7 @@ Some Splunk queries that might be useful for SOC daily routine (SOC L1 Diaries!)
 
 All of these queries are just usecases that ive wrote to give you ideas and key concepts that could help you in your SOC environment
 
-Each query can be better and more advanced , it only depends on you and your skills.
+Each query can be better and more advanced , it only depends on you and your skills (+ your Company and your Log plicies).
 
 ### Incoming Traffic from Internet
 #### Incoming allowed src_ip
@@ -39,7 +39,7 @@ for all of these we also must monitor the dest_ip and dest_port , I just wont re
  
 the `blocked traffic` is very important to monitor 
 
-The main goal of these charts is to monitor the baseline traffic of your company and detect any abnormal things.
+The main goal of these charts is to monitor the baseline traffic of your company and detect any abnormal traffic activity.
 
 ### Important Services like DNS or HTTP
 
