@@ -78,6 +78,30 @@ we also have other scans like SYN, ARP, SV and ... scans.
 any Scanning acivity must be monitored.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+### Windows BruteForce Attack
+just some basic rules to detect any foolish try!
+#### By Number of Attempts
+```
+index="your windows index name" host IN ("your DC") EventCode=4625 
+| stats count  as attempts by src
+| where attempts > 2
+```
+#### By Number of Dest Users
+```
+index="your windows index name" host=* EventCode=4625
+| stats dc(user) as Users by src
+| where Users>1
+| sort - Users
+```
+#### By All Values
+```
+index="your windows index name" EventCode=4625
+| stats dc(user) as UserCount,  values(user) count as AttemptCount by src
+| where UserCount > 2 AND AttemptCount > 1
+| sort - AttemptCount
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### File Transfer 
 #### Send & Receive All Network
