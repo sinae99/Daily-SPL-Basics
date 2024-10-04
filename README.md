@@ -79,4 +79,37 @@ any Scanning acivity must be monitored.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
+### File Transfer 
+#### Send & Receive All Network
+```
+index="your index name" sourcetype="traffic" 
+| eval sentbyte=(sentbyte)/(1024*1024)
+| eval rcvdbyte=(rcvdbyte)/(1024*1024)
+| stats sum(sentbyte),sum(rcvdbyte) by dest_ip,src_ip
+| addcoltotals
+```
+
+#### Send & Receive From Inside to the Internet
+```
+index="your index name" eventtype=traffic src_ip IN (192.168.0.0/16,172.16.0.0/16,0.0.0.0,172.22.0.0/16) 
+NOT dest_ip IN (192.168.0.0/16,172.16.0.0/16,172.28.0.0/16,0.0.0.0,172.22.0.0/16)
+| stats count AS event_count sum(bytes_in) AS bytes_in sum(bytes_out) AS bytes_out sum(bytes) AS bytes_total by src
+| eval mb_in=round(bytes_in/1024/1024)
+| eval mb_out=round(bytes_out/1024/1024)
+| eval mb_total=round(bytes_total/1024/1024)
+| table src,mb_in,mb_out,mb_total 
+| sort - mb_total
+```
+
+#### Send & Receive by User
+```
+index="your index name" user=*
+| stats count AS event_count sum(bytes_in) AS bytes_in sum(bytes_out) AS bytes_out sum(bytes) AS bytes_total by user
+| eval mb_in=round(bytes_in/1024/1024)
+| eval mb_out=round(bytes_out/1024/1024)
+| eval mb_total=round(bytes_total/1024/1024)
+| sort - mb_total
+| head 10
+```
+
 
