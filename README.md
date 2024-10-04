@@ -1,4 +1,4 @@
-# Daily-SPL
+# Daily-SPL 1
 Some Splunk queries that might be useful for SOC daily routine (SOC L1 Diaries!)
 
 All of these queries are just usecases that ive wrote to give you ideas and key concepts that could help you in your SOC environment
