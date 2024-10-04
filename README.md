@@ -111,5 +111,30 @@ index="your index name" user=*
 | sort - mb_total
 | head 10
 ```
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
+### HTTP Status Codes
+
+#### 1xx , 2xx , 3xx , 4xx , 5xx
+```
+index="your index name" sourcetype=traffic
+|rename http_retcode as status_code 
+| stats count(eval(status_code<100)) as under100,
+    count(eval(status_code>=100 AND status_code<200)) as ret100,
+    count(eval(status_code>=200 AND status_code<300)) as ret200,
+    count(eval(status_code>=300 AND status_code<400)) as ret300,
+    count(eval(status_code>=400 AND status_code<500)) as ret400,
+    count(eval(status_code>=500)) as ret500,  count as total_count by http_host
+| sort -total_count
+```
+
+
+some HTTP Response codes must be monitores in more details like 301 (Redirect) or 429 (Too Many Request) :
+
+#### HTTP Status Code 301
+```
+index="your index name" http_method=get  http_retcode=301 NOT http_url="/"
+|stats count values(http_url) by src
+|sort - count
+```
 
