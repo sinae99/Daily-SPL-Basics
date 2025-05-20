@@ -3,8 +3,6 @@ Some Splunk queries that might be useful for SOC daily routine (SOC L1 Diaries)
 
 All of these queries are just "**simple**" usecases to give you "**ideas**" and key concepts that could help you in your SOC environment
 
-Each query can be more advanced , it only depends on you and your skills (+ your Company and your Log plicies).
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Incoming Traffic from Internet
 #### Incoming allowed src_ip
