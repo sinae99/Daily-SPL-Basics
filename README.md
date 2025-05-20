@@ -35,10 +35,8 @@ NOT dest_ip IN ("192.168.0.0/16", "172.16.0.0/12", "10.0.0.0/8")
 | timechart count by src_port useother=false
 ```
 
-for all of these we also must monitor the dest_ip and dest_port , I just wont rewrite them again 
- and all these queries for `blocked traffic ` 
- 
-the `blocked traffic` is also important to monitor 
+for all of these kind of queries, there are many more points to monitor like `action=blocked`, `protocol=udp`, 
+
 
 The main goal of these charts is to monitor the baseline traffic of your company and detect any abnormal traffic activity.
 
@@ -73,11 +71,9 @@ index="your_index" sourcetype="your_sourcetype" icmp_type=8
 ```
 we also have other scans like SYN, ARP, SV and ... scans.
 
-any Scanning acivity must be monitored.
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Windows BruteForce Attack
-just some basic rules to detect any foolish try!
+just some rules to detect any foolish try
 #### By Number of Attempts
 ```
 index="your windows index name" host IN ("your DC") EventCode=4625 
