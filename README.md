@@ -38,7 +38,7 @@ NOT dest_ip IN ("192.168.0.0/16", "172.16.0.0/12", "10.0.0.0/8")
 for all of these we also must monitor the dest_ip and dest_port , I just wont rewrite them again 
  and all these queries for `blocked traffic ` 
  
-the `blocked traffic` is very important to monitor 
+the `blocked traffic` is also important to monitor 
 
 The main goal of these charts is to monitor the baseline traffic of your company and detect any abnormal traffic activity.
 
