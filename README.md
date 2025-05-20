@@ -1,5 +1,5 @@
 # Daily-SPL-Basics
-Some Splunk queries that might be useful for SOC daily routine (SOC L1 Diaries)
+Some Splunk queries that might be useful for SOC routines
 
 All of these queries are just "**simple**" usecases to give you "**ideas**" and key concepts that could help you in your SOC environment
 
@@ -35,7 +35,7 @@ NOT dest_ip IN ("192.168.0.0/16", "172.16.0.0/12", "10.0.0.0/8")
 | timechart count by src_port useother=false
 ```
 
-for all of these kind of queries, there are many more points to monitor like `action=blocked`, `protocol=udp`, 
+For all of these kinds of queries, there are many more aspects to monitor like `action=blocked`, `protocol=udp`, `src_ip!=<internal IP ranges>` and etc.
 
 
 The main goal of these charts is to monitor the baseline traffic of your company and detect any abnormal traffic activity.
@@ -43,7 +43,7 @@ The main goal of these charts is to monitor the baseline traffic of your company
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Important Services like DNS or HTTP
 
-Its critical to monitor the traffic of important services to avoid any Denial of Service or data exfiltration through a specific app.
+to avoid any Denial of Service or huge data transfer through a specific app or user
 
 ```
 index="your index name" sourcetype=traffic
@@ -69,11 +69,11 @@ index="your_index" sourcetype="your_sourcetype" icmp_type=8
 | timechart span=1m count by src_ip 
 | where count > 10
 ```
-we also have other scans like SYN, ARP, SV and ... scans.
+there is also other scans like SYN, ARP, SV and ... scans.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Windows BruteForce Attack
-just some rules to detect any foolish try
+to detect any foolish try
 #### By Number of Attempts
 ```
 index="your windows index name" host IN ("your DC") EventCode=4625 
